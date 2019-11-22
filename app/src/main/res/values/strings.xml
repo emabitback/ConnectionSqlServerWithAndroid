@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ConnectionSqlServerWithAndroid</string>
+    <string-array name="cabecera_tabla">
+        <item>No Control</item>
+        <item>Nombre</item>
+        <item>Apellidos</item>
+        <item>Semestre</item>
+    </string-array>
 </resources>

@@ -66,6 +66,17 @@
                     android:hint="No. de Control"
                     android:inputType="number" />
         -->
+        <Button
+            android:id="@+id/btn_agregar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/semestre"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="162dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="161dp"
+            android:text="Add" />
     </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
