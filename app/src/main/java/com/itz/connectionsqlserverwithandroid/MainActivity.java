@@ -3,6 +3,7 @@ package com.itz.connectionsqlserverwithandroid;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.ViewUtils;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -49,12 +50,14 @@ public class MainActivity extends AppCompatActivity {
                             "Selecciona un semestre", Toast.LENGTH_LONG).show();
                 }else {
                     try {
-                        Querys.ejecutaIUD("INSERT INTO alumnos(nc,nombre,apellidos,semestre)"
-                                +"VALUES ('"+nc.getText()+"','"+nombre.getText()+"','"+apellidos.getText()+"','"
-                        +semestres.getSelectedItem().toString()+")");
+                        Querys.ejecutaIUD("INSERT INTO alumnos(nc,nombre,apellidos,semestre) "
+                                +"VALUES ('"+nc.getText()+"','"+nombre.getText()+"','"+apellidos.getText()+"',"
+                        +Integer.parseInt(semestres.getSelectedItem().toString())+")");
+                        Intent i= new Intent(getApplicationContext(),SecondActivity.class);
+                        startActivity(i);
                     }catch (Exception e){
                         Toast.makeText(getApplicationContext(),
-                                "Error:"+e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                                "Error INSERT:"+e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                     }
                 }
             }

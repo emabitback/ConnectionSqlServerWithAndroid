@@ -10,6 +10,7 @@ import android.content.res.Resources;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -32,11 +35,14 @@ public class SecondActivity extends AppCompatActivity {
         btn = findViewById(R.id.btn);
 
         Tabla tabla = new Tabla(this,(TableLayout)findViewById(R.id.tabla));
+        tabla.addHeader(R.array.cabecera_tabla);
          ArrayList alumnos = new ArrayList();
          try {
              alumnos = Querys.getAll();
+             Log.d("mates",""+alumnos);
              for (int i = 0; i < alumnos.size();i++ ){
-                 DatosAlumno d = new DatosAlumno();
+                 DatosAlumno d; //= new DatosAlumno();
+                 d = (DatosAlumno) alumnos.get(i);
                  ArrayList<String> elementos = new ArrayList<String>();
                  elementos.add(d.getNc());
                  elementos.add(d.getNombre());
@@ -60,7 +66,7 @@ public class SecondActivity extends AppCompatActivity {
 
     }
 }
-class  Tabla{
+class  Tabla {
     private TableLayout tabla; // layout donde se pintara la tabla
     private ArrayList<TableRow> filas;
     private Activity actividad;
@@ -103,13 +109,16 @@ class  Tabla{
 
     }
 
-
-    public void addFilaTabla(ArrayList<String> elementos){
+    /**
+    * @param elementos
+     */
+    public void addFilaTabla(@NotNull ArrayList<String> elementos){
         TableRow.LayoutParams layoutCelda;
         TableRow.LayoutParams layoutFila = new TableRow.LayoutParams(
                             TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.WRAP_CONTENT);
         TableRow fila = new TableRow(actividad);
         fila.setLayoutParams(layoutFila);
+
 
         for (int i=0; i < elementos.size(); i++){
             TextView texto = new TextView(actividad);
